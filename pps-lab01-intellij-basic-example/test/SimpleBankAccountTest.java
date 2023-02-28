@@ -1,7 +1,7 @@
 import lab01.example.model.AccountHolder;
 import lab01.example.model.BankAccount;
-import lab01.example.model.SimpleBankAccount;
 
+import lab01.example.model.SimpleBankAccount;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,10 +44,13 @@ class SimpleBankAccountTest {
         assertEquals(30, bankAccount.getBalance());
     }
 
+
+
     @Test
     void testWrongWithdraw() {
         bankAccount.deposit(accountHolder.getId(), 100);
         bankAccount.withdraw(2, 70);
         assertEquals(100, bankAccount.getBalance());
     }
+
 }

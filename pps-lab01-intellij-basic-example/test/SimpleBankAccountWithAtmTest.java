@@ -1,40 +1,31 @@
 import lab01.example.model.AccountHolder;
 import lab01.example.model.BankAccountWithAtm;
+import lab01.example.model.SimpleBankAccount;
 import lab01.example.model.SimpleBankAccountWithAtm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-class SimpleBankAccountWithAtmTest {
-
-
-    private AccountHolder accountHolder;
-    private BankAccountWithAtm bankAccount;
-
+class SimpleBankAccountWithAtmTest extends BaseBankAccountTest<BankAccountWithAtm> {
 
     @BeforeEach
     void beforeEach() {
-        this.accountHolder = new AccountHolder("Giovanni", "Antonioni", 2);
-        this.bankAccount = new SimpleBankAccountWithAtm(this.accountHolder, 0);
-    }
-
-    @Test
-    void testInitialBalance() {
-        assertEquals(0, this.bankAccount.getBalance());
+        this.setAccountHolder(new AccountHolder("Giovanni", "Antonioni", 2));
+        this.setBankAccount(new SimpleBankAccountWithAtm(this.getAccountHolder(), 0));
     }
 
     @Test
     void testDepositWithAtm() {
-        this.bankAccount.depositWithAtm(this.accountHolder.getId(), 100);
-        assertEquals(this.bankAccount.getBalance(), 99);
+        this.getBankAccount().depositWithAtm(this.getAccountHolder().getId(), 100);
+        assertEquals(this.getBankAccount().getBalance(), 99);
     }
 
     @Test
     void testWithdrawWithAtm() {
-        this.bankAccount.deposit(this.accountHolder.getId(), 100);
-        assertEquals(this.bankAccount.getBalance(), 100);
+        this.getBankAccount().deposit(this.getAccountHolder().getId(), 100);
+        assertEquals(this.getBankAccount().getBalance(), 100);
 
-        this.bankAccount.withdrawWithAtm(this.accountHolder.getId(), 50);
-        assertEquals(this.bankAccount.getBalance(), 49);
+        this.getBankAccount().withdrawWithAtm(this.getAccountHolder().getId(), 50);
+        assertEquals(this.getBankAccount().getBalance(), 49);
     }
 }

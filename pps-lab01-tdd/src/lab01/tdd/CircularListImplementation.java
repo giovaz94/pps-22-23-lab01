@@ -47,11 +47,16 @@ public class CircularListImplementation implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        if(this.isEmpty()) {
+            return Optional.empty();
+        } else {
+            this.index = this.index == 0 ? this.size() - 1 : this.index - 1;
+            return Optional.of(this.innerList.get(index));
+        }
     }
 
     @Override
     public void reset() {
-
+        this.index = 0;
     }
 }

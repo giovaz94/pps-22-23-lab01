@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * The test suite for testing the CircularList implementation
  */
 public class CircularListTest {
-
 
     public static final int NUMBER_OF_ELEMENTS = 20;
     private CircularList circularEmptyList;
@@ -66,18 +64,36 @@ public class CircularListTest {
     @Test
     public void testNextElement() {
         for(int i = 1; i < this.circularListWithElements.size(); i++) {
-            checkNextElement(this.circularListWithElements.next(), i + 1);
+            checkElement(this.circularListWithElements.next(), i + 1);
         }
-        checkNextElement(this.circularListWithElements.next(), 1);
-    }
-
-    private void checkNextElement(final Optional<Integer> nextElement, final int valueToCheck) {
-        assertFalse(nextElement.isEmpty());
-        assertEquals(valueToCheck, nextElement.get());
+        checkElement(this.circularListWithElements.next(), 1);
     }
 
     @Test
     public void testPreviousElementInEmptyList() {
         assertTrue(this.circularEmptyList.previous().isEmpty());
+    }
+
+
+    @Test
+    public void testPreviousElement() {
+        for (int i = 0; i < this.circularListWithElements.size(); i++) {
+            checkElement(this.circularListWithElements.previous(),this.circularListWithElements.size() - i);
+        }
+    }
+
+    @Test
+    public void testReset() {
+        for (int i = 0; i < 3; i++) {
+            this.circularListWithElements.next();
+        }
+        this.circularListWithElements.reset();
+        checkElement(this.circularListWithElements.next(), 2);
+        checkElement(this.circularListWithElements.previous(), 1);
+    }
+
+    private void checkElement(final Optional<Integer> element, final int valueToCheck) {
+        assertFalse(element.isEmpty());
+        assertEquals(valueToCheck, element.get());
     }
 }

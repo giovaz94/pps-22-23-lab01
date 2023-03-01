@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CircularListTest {
 
 
+    public static final int NUMBER_OF_ELEMENTS = 20;
     private CircularList circularList;
 
     @BeforeEach
@@ -38,6 +39,18 @@ public class CircularListTest {
 
         assertEquals(1, this.circularList.size());
         assertFalse(this.circularList.isEmpty());
+    }
+
+    @Test
+    public void testSize() {
+        this.circularList.add(1);
+        assertEquals(1, this.circularList.size());
+        this.circularList.add(1);
+        assertEquals(2, this.circularList.size());
+        for(int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+            this.circularList.add(i);
+        }
+        assertEquals(22, this.circularList.size());
     }
 
 

@@ -9,8 +9,15 @@ public class CircularListImplementation implements CircularList {
 
     private final List<Integer> innerList;
 
+    private int index;
+
+
+    public CircularListImplementation(List<Integer> list) {
+        this.innerList = list;
+        this.index = 0;
+    }
     public CircularListImplementation() {
-        this.innerList = new LinkedList<>();
+        this(new LinkedList<>());
     }
 
     @Override
@@ -30,7 +37,12 @@ public class CircularListImplementation implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        if(this.isEmpty()) {
+            return Optional.empty();
+        } else {
+            this.index = this.index + 1 >= this.size() ?  0 : this.index + 1;
+            return Optional.of(this.innerList.get(this.index));
+        }
     }
 
     @Override

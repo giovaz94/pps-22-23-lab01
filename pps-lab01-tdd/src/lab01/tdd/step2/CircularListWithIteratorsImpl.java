@@ -71,7 +71,26 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
     }
 
     @Override
-    public Iterator backwardIterator() {
-        return null;
+    public Iterator<Integer> backwardIterator() {
+        return new Iterator<>() {
+
+            int index  = 0;
+
+            @Override
+            public boolean hasNext() {
+                return !isEmpty();
+            }
+
+            @Override
+            public Integer next() {
+                if(CircularListWithIteratorsImpl.this.isEmpty()) {
+                    throw new NoSuchElementException();
+                }
+                final List<Integer> supportList = new LinkedList<>(List.copyOf(innerList));
+                Collections.reverse(supportList);
+                this.index = this.index == CircularListWithIteratorsImpl.this.size() - 1 ? 0 : this.index + 1;
+                return supportList.get(index);
+            }
+        };
     }
 }

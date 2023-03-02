@@ -28,6 +28,15 @@ public class CircularListWithIteratorsTest extends CircularListBase<CircularList
         testIterator(forwardIterator, 1);
     }
 
+    @Test
+    public void testBackwardIterator() {
+        final Iterator<?> backwardIterator = this.getCircularListWithElements().backwardIterator();
+        final int size = this.getCircularListWithElements().size();
+        for (int i = 1; i < size; i++) {
+            testIterator(backwardIterator, size - i);
+        }
+        testIterator(backwardIterator, 4);
+    }
 
     private void testIterator(Iterator<?> iterator, int value) {
         assertTrue(iterator.hasNext());

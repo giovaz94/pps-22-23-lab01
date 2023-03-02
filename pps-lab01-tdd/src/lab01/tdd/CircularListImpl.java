@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class CircularListImplementation implements CircularList {
+public class CircularListImpl implements CircularList {
 
 
     private final List<Integer> innerList;
@@ -12,11 +12,11 @@ public class CircularListImplementation implements CircularList {
     private int index;
 
 
-    public CircularListImplementation(List<Integer> list) {
-        this.innerList = list;
+    public CircularListImpl(List<Integer> list) {
+        this.innerList = new LinkedList<>(list);
         this.index = 0;
     }
-    public CircularListImplementation() {
+    public CircularListImpl() {
         this(new LinkedList<>());
     }
 

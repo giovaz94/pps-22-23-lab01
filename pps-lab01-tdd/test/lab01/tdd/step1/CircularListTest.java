@@ -1,10 +1,9 @@
+package lab01.tdd.step1;
+
 import base.CircularListBase;
-import lab01.tdd.CircularList;
-import lab01.tdd.CircularListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,6 @@ public class CircularListTest extends CircularListBase<CircularList> {
         this.setCircularEmptyList(new CircularListImpl());
         this.setCircularListWithElements(new CircularListImpl(List.of(1,2,3,4,5)));
     }
-
 
     @Test
     public void testNextElementInEmptyList() {
@@ -40,7 +38,6 @@ public class CircularListTest extends CircularListBase<CircularList> {
     public void testPreviousElementInEmptyList() {
         assertTrue(this.getCircularEmptyList().previous().isEmpty());
     }
-
 
     @Test
     public void testPreviousElement() {

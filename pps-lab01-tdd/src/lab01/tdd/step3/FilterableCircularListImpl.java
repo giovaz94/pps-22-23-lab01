@@ -1,7 +1,5 @@
 package lab01.tdd.step3;
 
-import lab01.tdd.CircularListImpl;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -25,36 +23,53 @@ public class FilterableCircularListImpl implements FilterableCircularList {
 
     @Override
     public Optional<Integer> filteredNext(Predicate<Integer> condition) {
+
+        final int lastIndex = this.index;
+        do {
+            Optional<Integer> element = this.next();
+            if(element.isPresent() && condition.test(element.get())) {
+                return element;
+            }
+        } while (lastIndex != this.index);
         return Optional.empty();
     }
 
     @Override
     public void add(int element) {
-
+        this.innerList.add(element);
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.innerList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.innerList.isEmpty();
     }
 
-    @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        if(this.isEmpty()) {
+            return Optional.empty();
+        } else {
+            this.index = this.index + 1 >= this.size() ?  0 : this.index + 1;
+            return Optional.of(this.innerList.get(this.index));
+        }
     }
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        if(this.isEmpty()) {
+            return Optional.empty();
+        } else {
+            this.index = this.index == 0 ? this.size() - 1 : this.index - 1;
+            return Optional.of(this.innerList.get(index));
+        }
     }
 
     @Override
     public void reset() {
-
+        this.index = 0;
     }
 }

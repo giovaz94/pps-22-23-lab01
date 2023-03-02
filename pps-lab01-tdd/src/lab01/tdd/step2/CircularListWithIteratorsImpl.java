@@ -1,7 +1,5 @@
 package lab01.tdd.step2;
 
-import lab01.tdd.CircularListImpl;
-
 import java.util.*;
 
 public class CircularListWithIteratorsImpl implements CircularListWithIterators {

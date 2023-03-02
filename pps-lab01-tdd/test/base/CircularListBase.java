@@ -1,10 +1,9 @@
 package base;
 
-import lab01.tdd.CircularList;
+import lab01.tdd.step1.CircularList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,6 +1,6 @@
 package lab01.tdd.step2;
 
-import lab01.tdd.CircularList;
+import lab01.tdd.step1.CircularList;
 
 import java.util.Iterator;
 
